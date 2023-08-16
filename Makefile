@@ -1,5 +1,7 @@
 setup: install build publish package-install
 
+rebuild: uninstall setup
+
 install:
 	poetry install
 
@@ -14,3 +16,9 @@ publish:
 
 package-install:
 	python3 -m pip install --user dist/*.whl
+
+uninstall:
+	python3 -m pip uninstall dist/*.whl
+
+lint:
+	poetry run flake8 brain_games
