@@ -12,7 +12,7 @@ def generate_random_example():
     progression = list(range(start, stop, step))
     unknown_element = randint(0, 9)
     right_answer = progression.pop(unknown_element)
-    progression.insert(unknown_element, '...')
+    progression.insert(unknown_element, '..')
     return progression, right_answer
 
 
