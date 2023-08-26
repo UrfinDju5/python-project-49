@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-from brain_games import greeting
-from brain_games.games import defination_gcd
+from brain_games.games.defination_gcd import MESAGE_START
 from brain_games import games_logic
+from brain_games.games.defination_gcd import generate_random_example
 
 
 def main():
-    name = greeting.welcome_user()
-    games_logic.game_logic('gcd', defination_gcd.MESAGE_START, name)
+    games_logic.run_game(generate_random_example, MESAGE_START)
 
 
 if __name__ == "__main__":

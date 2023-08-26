@@ -1,34 +1,39 @@
-from brain_games.games import is_even
-from brain_games.games import calculation_game
-from brain_games.games import defination_gcd
 from brain_games import greeting
-from brain_games.games import game_progression
-from brain_games.games import game_prime
 
 
-def game_logic(game_name, mesage_start, name):
+NUMBER_OF_GAME_REPETITIONS = 3
+MESAGE_WRONG = 'is wrong answer ;(. Correct answer was'
+
+
+def ask_user_question(func):
+    question, right_answer = func()
+    print('Question: ', end='')
+    print(*question)
+    user_answer = input('Your answer: ')
+    try:
+        user_answer = int(user_answer)
+    except ValueError:
+        return user_answer, right_answer
+    return user_answer, right_answer
+
+
+def response_definition(func):
+    user_answer, right_answer = ask_user_question(func)
+    if user_answer == right_answer:
+        return 'Correct!'
+    else:
+        return f"'{user_answer}' {MESAGE_WRONG} '{right_answer}'."
+
+
+def run_game(func, mesage_start):
+    name = greeting.welcome_user()
     print(mesage_start)
     i = 0
-    while i < 3:
-        match game_name:
-            case 'even':
-                result_game = is_even.verdict()
-            case 'calc':
-                result_game = calculation_game.verdict()
-            case 'gcd':
-                result_game = defination_gcd.verdict()
-            case 'progression':
-                result_game = game_progression.verdict()
-            case 'prime':
-                result_game = game_prime.verdict()
+    while i < NUMBER_OF_GAME_REPETITIONS:
+        result_game = response_definition(func)
         if result_game == 'Correct!':
             print(result_game)
             i += 1
         else:
             return print(f"{result_game}\nLet's try again, {name}!")
     print(f'Congratulations, {name}!')
-
-
-if __name__ == '__main__':
-    name = greeting.welcome_user()
-    game_logic('prime', game_prime.MESAGE_START, name)

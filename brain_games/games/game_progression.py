@@ -14,23 +14,3 @@ def generate_random_example():
     right_answer = progression.pop(unknown_element)
     progression.insert(unknown_element, '..')
     return progression, right_answer
-
-
-def user_decision(progression):
-    print('Question: ', end='')
-    print(*progression)
-    user_answer = input('Your answer: ')
-    try:
-        user_answer = int(user_answer)
-    except ValueError:
-        return user_answer
-    return user_answer
-
-
-def verdict():
-    progression, right_answer = generate_random_example()
-    user_answer = user_decision(progression)
-    if user_answer == right_answer:
-        return 'Correct!'
-    else:
-        return f"'{user_answer}' {MESAGE_WRONG} '{right_answer}'."

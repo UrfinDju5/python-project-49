@@ -12,8 +12,9 @@ SIMPLE_NUMBER = [
 
 
 def generate_random_example():
-    randome_number = randint(1, 200)
-    return randome_number
+    random_number = randint(1, 200)
+    right_answer = right_decision(random_number)
+    return [[random_number], right_answer]
 
 
 def right_decision(random_number):
@@ -21,19 +22,3 @@ def right_decision(random_number):
         return 'yes'
     else:
         return 'no'
-
-
-def user_decision(random_number):
-    print(f'Question: {random_number}')
-    user_answer = input('Your answer: ')
-    return user_answer
-
-
-def verdict():
-    random_number = generate_random_example()
-    right_answer = right_decision(random_number)
-    user_answer = user_decision(random_number)
-    if user_answer == right_answer:
-        return 'Correct!'
-    else:
-        return f"'{user_answer}' {MESAGE_WRONG} '{right_answer}'."

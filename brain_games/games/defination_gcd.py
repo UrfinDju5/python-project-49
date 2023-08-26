@@ -8,7 +8,10 @@ MESAGE_START = 'Find the greatest common divisor of given numbers.'
 def generate_random_example():
     number1 = randint(1, 100)
     number2 = randint(1, 100)
-    return [number1, number2]
+    random_example = number1, number2
+    sorted_example = sort_randome_example(random_example)
+    right_answer = right_decision(sorted_example)
+    return [random_example, right_answer]
 
 
 def sort_randome_example(random_example):
@@ -32,25 +35,3 @@ def right_decision(sorted_example):
             max_num = min_num
             min_num = i
             result = i
-
-
-def user_decision(random_example):
-    number1, number2 = random_example
-    print('Question: ', end='')
-    print(number1, number2)
-    user_answer = input('Your answer: ')
-    try:
-        user_answer = int(user_answer)
-    except ValueError:
-        return user_answer
-    return user_answer
-
-
-def verdict():
-    random_example = generate_random_example()
-    right_answer = right_decision(sort_randome_example(random_example))
-    user_answer = user_decision(random_example)
-    if user_answer == right_answer:
-        return 'Correct!'
-    else:
-        return f"'{user_answer}' {MESAGE_WRONG} '{right_answer}'."

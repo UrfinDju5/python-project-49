@@ -1,11 +1,10 @@
-from brain_games import greeting
 from brain_games import games_logic
-from brain_games.games import game_prime
+from brain_games.games.game_prime import MESAGE_START
+from brain_games.games.game_prime import generate_random_example
 
 
 def main():
-    name = greeting.welcome_user()
-    games_logic.game_logic('prime', game_prime.MESAGE_START, name)
+    games_logic.run_game(generate_random_example, MESAGE_START)
 
 
 if __name__ == "__main__":
