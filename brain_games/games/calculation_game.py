@@ -1,20 +1,25 @@
-from random import randint
+from random import randint, choice
 
 
-MESAGE_WRONG = 'is wrong answer ;(. Correct answer was'
-MESAGE_START = 'What is the result of the expression?'
+DESCRIPTION_GAME = 'What is the result of the expression?'
+MINIMUM_GENERATED_NUMBER = 1
+MAXIMUM_GENERATED_NUMBER = 50
+MATH_SYMBOLS = ('+', '-', '*')
 
 
-def generate_random_example():
-    number1 = randint(1, 50)
-    number2 = randint(1, 50)
-    symbol = ['+', '-', '*'][randint(0, 2)]
+def generate_random_question():
+    number1 = randint(MINIMUM_GENERATED_NUMBER, MAXIMUM_GENERATED_NUMBER)
+    number2 = randint(MINIMUM_GENERATED_NUMBER, MAXIMUM_GENERATED_NUMBER)
+    symbol = choice(MATH_SYMBOLS)
     random_example = number1, symbol, number2
-    right_answer = right_decision(random_example)
-    return [random_example, right_answer]
+    right_answer = str(determining_correct_answer(random_example))
+    question = str(number1), symbol, str(number2)
+    question = ' '.join(question)
+    question = 'Question: ' + question
+    return (question, right_answer)
 
 
-def right_decision(random_example):
+def determining_correct_answer(random_example):
     number1, symbol, number2 = random_example
     match symbol:
         case '+':

@@ -1,30 +1,25 @@
 from random import randint
 
 
-MESAGE_WRONG = 'is wrong answer ;(. Correct answer was'
-MESAGE_START = 'Find the greatest common divisor of given numbers.'
+DESCRIPTION_GAME = 'Find the greatest common divisor of given numbers.'
+MINIMUM_GENERATED_NUMBER = 1
+MAXIMUM_GENERATED_NUMBER = 100
 
 
-def generate_random_example():
-    number1 = randint(1, 100)
-    number2 = randint(1, 100)
-    random_example = number1, number2
-    sorted_example = sort_randome_example(random_example)
-    right_answer = right_decision(sorted_example)
-    return [random_example, right_answer]
+def generate_random_question():
+    number1 = randint(MINIMUM_GENERATED_NUMBER, MAXIMUM_GENERATED_NUMBER)
+    number2 = randint(MINIMUM_GENERATED_NUMBER, MAXIMUM_GENERATED_NUMBER)
+    random_example = [number1, number2]
+    right_answer = str(determining_correct_answer(random_example))
+    question = str(number1), str(number2)
+    question = ' '.join(question)
+    question = 'Question: ' + question
+    return (question, right_answer)
 
 
-def sort_randome_example(random_example):
-    number1, number2 = random_example
-    if number1 < number2:
-        min_num, max_num = number1, number2
-    else:
-        min_num, max_num = number2, number1
-    return [min_num, max_num]
-
-
-def right_decision(sorted_example):
-    min_num, max_num = sorted_example
+def determining_correct_answer(random_example):
+    random_example.sort()
+    min_num, max_num = random_example
     i = min_num
     result = min_num
     while i != 0:

@@ -1,16 +1,19 @@
 from random import randint
 
 
-MESAGE_WRONG = 'is wrong answer ;(. Correct answer was'
-MESAGE_START = 'What number is missing in the progression?'
+DESCRIPTION_GAME = 'What number is missing in the progression?'
 
 
-def generate_random_example():
+def generate_random_question():
     start = randint(2, 20)
     step = randint(2, 7)
     stop = start + step * 10
     progression = list(range(start, stop, step))
     unknown_element = randint(0, 9)
-    right_answer = progression.pop(unknown_element)
-    progression.insert(unknown_element, '..')
-    return progression, right_answer
+    right_answer = str(progression[unknown_element])
+    progression[unknown_element] = '..'
+    question = ''
+    for i in progression:
+        question += str(i) + ' '
+    question = 'Question: ' + question
+    return (question, right_answer)

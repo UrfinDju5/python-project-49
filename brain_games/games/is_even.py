@@ -1,17 +1,18 @@
 from random import randint
 
 
-MESAGE_WRONG = 'is wrong answer ;(. Correct answer was'
-MESAGE_START = 'Answer "yes" if the number is even, otherwise answer "no".'
+DESCRIPTION_GAME = 'Answer "yes" if the number is even, otherwise answer "no".'
 
 
-def generate_random_example():
+def generate_random_question():
     random_number = randint(1, 100)
-    right_decision = is_right_answer(random_number)
-    return [[random_number], right_decision]
+    right_answer = str(determining_correct_answer(random_number))
+    question = str(random_number)
+    question = 'Question: ' + question
+    return (question, right_answer)
 
 
-def is_right_answer(random_number):
+def determining_correct_answer(random_number):
     if random_number % 2 == 0:
         return 'yes'
     else:
