@@ -14,8 +14,7 @@ def generate_random_question():
         right_answer = 'yes'
     else:
         right_answer = 'no'
-    question = str(random_number)
-    question = 'Question: ' + question
+    question = f'Question: {str(random_number)}'
     return (question, right_answer)
 
 

@@ -11,16 +11,12 @@ def generate_random_question():
     number1 = randint(MINIMUM_GENERATED_NUMBER, MAXIMUM_GENERATED_NUMBER)
     number2 = randint(MINIMUM_GENERATED_NUMBER, MAXIMUM_GENERATED_NUMBER)
     symbol = choice(MATH_SYMBOLS)
-    random_example = number1, symbol, number2
-    right_answer = str(determining_correct_answer(random_example))
-    question = str(number1), symbol, str(number2)
-    question = ' '.join(question)
-    question = 'Question: ' + question
+    right_answer = str(calculate_right_answer(number1, symbol, number2))
+    question = f'Question: {str(number1)} {symbol} {str(number2)}'
     return (question, right_answer)
 
 
-def determining_correct_answer(random_example):
-    number1, symbol, number2 = random_example
+def calculate_right_answer(number1, symbol, number2):
     match symbol:
         case '+':
             return number1 + number2

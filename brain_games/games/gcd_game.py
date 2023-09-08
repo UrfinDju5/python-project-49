@@ -9,17 +9,14 @@ MAXIMUM_GENERATED_NUMBER = 100
 def generate_random_question():
     number1 = randint(MINIMUM_GENERATED_NUMBER, MAXIMUM_GENERATED_NUMBER)
     number2 = randint(MINIMUM_GENERATED_NUMBER, MAXIMUM_GENERATED_NUMBER)
-    random_example = [number1, number2]
-    right_answer = str(determining_correct_answer(random_example))
-    question = str(number1), str(number2)
-    question = ' '.join(question)
-    question = 'Question: ' + question
+    right_answer = str(get_gcd(number1, number2))
+    question = f'Question: {str(number1)} {str(number2)}'
     return (question, right_answer)
 
 
-def determining_correct_answer(random_example):
-    random_example.sort()
-    min_num, max_num = random_example
+def get_gcd(number1, number2):
+    min_num = number1 if number1 < number2 else number2
+    max_num = number1 if number1 > number2 else number2
     i = min_num
     result = min_num
     while i != 0:

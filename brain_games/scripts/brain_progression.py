@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-from brain_games.games.game_progression import DESCRIPTION_GAME
+from brain_games.games.progression_game import DESCRIPTION_GAME
 from brain_games import games_logic
-from brain_games.games.game_progression import generate_random_question
+from brain_games.games.progression_game import generate_random_question
 
 
 def main():
